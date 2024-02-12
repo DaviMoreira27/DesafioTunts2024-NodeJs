@@ -14,6 +14,8 @@ class SheetManipulator {
     this.sheetRange = sheetRange;
     this.maximumClasses = 60;
     this.spreadsheetvalues = [];
+    this.tokenPath = process.env.FILE;
+    this.googleApiUrl = 'https://www.googleapis.com/auth/spreadsheets';
   }
 
 
@@ -23,8 +25,8 @@ class SheetManipulator {
    */
   async getSpreadsheet() {
     const googleAuth = new google.Auth.GoogleAuth({
-      keyFile: process.env.FILE,
-      scopes: 'https://www.googleapis.com/auth/spreadsheets',
+      keyFile: this.tokenPath,
+      scopes: this.googleApiUrl,
     })
 
     const getService = new google.sheets_v4.Sheets().spreadsheets;
@@ -94,7 +96,6 @@ class SheetManipulator {
       } else {
         element.situacao = 'Exame Final'
       }
-
     })
 
     this.spreadsheetvalues = getChangedArray
@@ -125,6 +126,109 @@ class SheetManipulator {
     return this.spreadsheetvalues;
   }
 
+  /***
+   * Insert the manipulated data in the spreadsheet.
+   * @param {string} sheetRangeInsert - The sheet cell or column interval that the data will be inserted.
+   * @returns {Promise | string}
+  */
+
+  async insertRowsInSpreadsheet(sheetRangeInsert) {
+    const googleAuth = new google.Auth.GoogleAuth({
+      keyFile: this.tokenPath,
+      scopes: this.googleApiUrl,
+    })
+
+    const getService = new google.sheets_v4.Sheets().spreadsheets;
+    const checkOcuppied = await this.isAlreadyOcuppied(sheetRangeInsert);
+
+    if (checkOcuppied == undefined) {
+      const storeNecessary = []
+      this.spreadsheetvalues.forEach(element => {
+        storeNecessary.push(
+          [element.situacao,
+          element.naf]
+        )
+      })
+      try {
+        const getRows = await getService.values.append({
+          auth: googleAuth,
+          spreadsheetId: this.sheetId,
+          range: sheetRangeInsert,
+          valueInputOption: "USER_ENTERED",
+          resource: {
+            values: storeNecessary
+          }
+        });
+
+        return "Data inserted sucessfully!";
+
+      } catch (e) {
+        // Show the error message 
+        return e.response.data.error.message;
+      }
+    } else {
+      return "Rows already ocuppied. Select another range!";
+    }
+
+  }
+
+  /***
+   * Check if the selected range is not already occupied, preventing the erroneous insert of data.
+   * @param {string} sheetRangeInsert - The sheet cell or column interval that the data will be inserted.
+   * @returns {Array<Array> | string}
+  */
+  async isAlreadyOcuppied(sheetRangeInsert) {
+    const googleAuth = new google.Auth.GoogleAuth({
+      keyFile: this.tokenPath,
+      scopes: this.googleApiUrl,
+    })
+
+    const getService = new google.sheets_v4.Sheets().spreadsheets;
+
+    try {
+      const getRows = await getService.values.get({
+        auth: googleAuth,
+        spreadsheetId: this.sheetId,
+        range: sheetRangeInsert
+      });
+
+      return getRows.data.values;
+    } catch (e) {
+      return e.response.data.error.message;
+    }
+
+  }
+
+  /***
+   * Clear the selected interval.
+   * @param {string} sheetRangeInsheetRangeToClearsert - The sheet cell or column interval that the data will be cleared from.
+   * @returns {string}
+  */
+  async clearInsertedValues(sheetRangeToClear){
+    const googleAuth = new google.Auth.GoogleAuth({
+      keyFile: this.tokenPath,
+      scopes: this.googleApiUrl,
+    })
+
+    const getService = new google.sheets_v4.Sheets().spreadsheets;
+    const checkOcuppied = await this.isAlreadyOcuppied(sheetRangeToClear);
+
+    if (checkOcuppied !== undefined) {
+      try {
+        const getRows = await getService.values.clear({
+          auth: googleAuth,
+          spreadsheetId: this.sheetId,
+          range: sheetRangeToClear
+        });
+  
+        return "The data has been cleared sucessfully!"; 
+      } catch (e) {
+        return "It was not possible to clear the given range!";
+      }
+    }else{
+      return "The given range do not have any value!"
+    }
+  }
 }
 
 module.exports = { SheetManipulator };
