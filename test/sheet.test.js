@@ -35,4 +35,12 @@ describe('checkAbsencesNaf', () => {
         const resultNaf = getSheetClassNaf.checkAbsencesNaf();
         expect(resultNaf[0].naf).toBe(37);
     })
-})
+});
+
+test('check if the the rows are ocuppied', async() => {
+    const getSheetClass = new SheetManipulator(spreadsheetId, spreadsheetRange);
+    // Range that is not ocuppied
+    const sheetRangeInsert = "G100:H80";
+    expect(await getSheetClass.isAlreadyOcuppied(sheetRangeInsert)).toBe(undefined);
+});
+
