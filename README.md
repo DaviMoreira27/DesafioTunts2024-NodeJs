@@ -16,6 +16,8 @@ You can expect a hardworking and flexible employee that can work in the most div
 
 **Localhost link: http://localhost:3000/**
 
+**To insert new data: http://localhost:3000/insert**
+
 # Commands
 
 <code>git clone https://github.com/DaviMoreira27/DesafioTunts2024-NodeJs</code>
