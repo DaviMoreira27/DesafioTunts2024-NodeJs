@@ -1,19 +1,31 @@
 # DesafioTunts2024-NodeJs
-Google Sheets API for the project Desafio.Tunts 2024 - Node
+Google Sheets API for the project Desafio.Tunts 2024 - With NodeJS
 
 
- O projeto faz uso do Node.js como plataforma principal, Jest para testes, JsDoc para documentação, nodemon para desenvolvimento ágil e integração com o Google Sheets para manipulação de dados em planilhas. Essa combinação de tecnologias visa criar uma aplicação robusta, testada e bem documentada.
+ The project uses Node.js as the main platform, Jest for testing, JsDoc for documentation, nodemon for agile development and integration with Google Sheets for manipulating data in spreadsheets. This combination of technologies aims to create a robust, tested and well-documented application.
 
- Link planilha: https://docs.google.com/spreadsheets/d/11noy7IP6xjwcCidWczdvB1iNOw2_3TRlDmGbET35JXk/edit;
+**Spreadsheet's link: https://docs.google.com/spreadsheets/d/11noy7IP6xjwcCidWczdvB1iNOw2_3TRlDmGbET35JXk/edit?usp=sharing**
 
-# Comandos
+**Localhost link: http://localhost:3000/**
 
-**npm install**
+# Commands
 
-Para rodar em localhost
+<code>git clone https://github.com/DaviMoreira27/DesafioTunts2024-NodeJs</code>
 
-**npm run meContrata**
+<code>npm install</code>
 
-Para testes
+To run on localhost
 
-**npm test**
+<code>npm run meContrata</code>
+
+For testing
+
+<code>npm test</code>
+
+![image](https://github.com/DaviMoreira27/DesafioTunts2024-NodeJs/assets/87380722/ee9add10-2a8a-4312-9fd2-b53f34a50d51)
+</br>
+</br>
+![image](https://github.com/DaviMoreira27/DesafioTunts2024-NodeJs/assets/87380722/decd5e1c-e640-4dfa-aa39-43d7b0de6d63)
+</br>
+</br>
+![image](https://github.com/DaviMoreira27/DesafioTunts2024-NodeJs/assets/87380722/cf95c300-ae8a-42f3-92c1-eba0a743af01)
