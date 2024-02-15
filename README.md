@@ -4,8 +4,8 @@ Google Sheets API for the project Desafio.Tunts 2024 - With NodeJS
 
  The project uses Node.js as the main platform, Jest for testing, JsDoc for documentation, nodemon for agile development and integration with Google Sheets for manipulating data in spreadsheets. This combination of technologies aims to create a robust, tested and well-documented application.
 
-**I made two projects, this, and using Laravel. I know for certainly that you have a lot of better applications, but a can guarantee you that, if i have one abillty is that i can easily transport my knowledge beetween different languages, same as Java, PHP, Node JS.**
-**You can expect a hardworking and flexible employee that can work in the most diverse positions. Thank you for the opportunity, and i think you wont regret given me a chance!**
+**I made two projects, this, and using Laravel. I know for certainly that you have a lot of better applications, but a can guarantee you that, if i have one skill, is that i can easily transport my knowledge beetween different languages, same as Java, PHP, Node JS.**
+**You can expect a hardworking and flexible employee that can work in the most diverse positions in development and infrastructure. Thank you for the opportunity, and i think you wont regret given me one more chance!**
  
 **Spreadsheet's link: https://docs.google.com/spreadsheets/d/11noy7IP6xjwcCidWczdvB1iNOw2_3TRlDmGbET35JXk/edit?usp=sharing**
 
